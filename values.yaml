@@ -1,0 +1,107 @@
+kubernetesClusterDomain: cluster.local
+
+image:
+  repository: qxip/qryn
+  tag: 3.0.30-bun
+
+imagePullSecrets:
+  nameOverride: ""
+nameOverride: ""
+fullnameOverride: ""
+
+imageCredentials: {}
+# imageCredentials:
+#   registry: registry.cluster.local
+#   username: someone
+#   password: sillyness
+#   email: someone@host.com
+  
+
+replicas: 1
+
+service:
+  type: ClusterIP
+  port: 3100
+
+podAnnotations: {}
+# podLabels: {}
+podLabels:
+  - qryn
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+env:
+  CLICKHOUSE_SERVER: "localhost"
+  CLICKHOUSE_PORT: "8123"
+  CLICKHOUSE_DB: "qryn"
+  CLICKHOUSE_AUTH: "default:"
+  CLICKHOUSE_PROTO: "http"
+  CLICKHOUSE_TIMEFIELD: "record_datetime"
+  # CLUSTER_NAME: ""
+  BULK_MAXAGE: "2000"
+  BULK_MAXSIZE: "5000"
+  BULK_MAXCACHE: "50000"
+  LABELS_DAYS: "7"
+  SAMPLES_DAYS: "7"
+  HOST: "0.0.0.0"
+  PORT: "3100"
+  # QRYN_LOGIN: ""
+  # QRYN_PASSWORD: ""
+  READONLY: "false"
+  OMIT_CREATE_TABLES: "false"
+  FASTIFY_BODYLIMIT: "5242880"
+  FASTIFY_REQUESTTIMEOUT: "0"
+  FASTIFY_MAXREQUESTS: "0"
+  FASTIFY_METRICS: "false"
+  ADVANCED_PROMETHEUS_MAX_SAMPLES: "5000000"
+  CORS_ALLOW_ORIGIN: 	"*"
+  TEMPO_SPAN: "24"
+  TEMPO_TAGTRACE: "false"
+  DEBUG: "false"
+  LOG_LEVEL: "info"
+  HASH: "xxhash64"
+  ALERTMAN_URL: "false"
+  ADVANCED_SAMPLES_ORDERING: "timestamp_ns"
