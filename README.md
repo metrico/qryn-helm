@@ -9,7 +9,8 @@ This Helm chart provides Kubernetes deployment configurations for [qryn](https:/
 To deploy [qryn](https://github.com/metrico/qryn) using this Helm chart, use the following command:
 
 ```bash
-helm install qryn-release qryn-helm
+helm repo add qryn-helm https://metrico.github.io/qryn-helm/
+helm install my-qryn-helm qryn-helm/qryn-helm --version 0.1.0
 ```
 
 For customization, you can provide a `values.yaml` file or use `--set` flags to override specific configurations during installation.
