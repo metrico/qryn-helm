@@ -23,6 +23,10 @@ service:
   type: ClusterIP
   port: 3100
 
+livenessProbe:
+  enabled: false
+  endpoint: "/metrics"
+
 podAnnotations: {}
 # podLabels: {}
 podLabels:

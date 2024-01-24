@@ -34,15 +34,17 @@ spec:
             containerPort: {{ .Values.service.port }}
             protocol: TCP
 
+        {{- if eq .Values.livenessProbe.enabled true }}
         livenessProbe: 
           httpGet: 
-            path: /ready
+            path: {{ .Values.livenessProbe.endpoint }}
             port: http
           initialDelaySeconds: 10 #Default 0 
           periodSeconds: 10 #Default 10 
           timeoutSeconds: 1 #Default 1 
           successThreshold: 1 #Default 1 
           failureThreshold: 3 #Default 3 
+        {{ end }}
 
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
