@@ -3,12 +3,12 @@ entries:
   qryn-helm:
   - apiVersion: v2
     appVersion: 3.0.20
-    created: "2024-01-24T15:08:02.690213211+02:00"
+    created: "2024-01-24T16:22:56.282855402+02:00"
     description: A Helm chart for Kubernetes
-    digest: 5574ed3aa10b5c14edc844839b0e4c213730f708cdeb950b3ccbb0519cf970e4
+    digest: 0bb68c1c8843eafa7028bd3f05b5ac85d50d4cf07e5c9ba1b59b587132ac38b4
     name: qryn-helm
     type: application
     urls:
     - qryn-helm-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-24T15:08:02.689642507+02:00"
+generated: "2024-01-24T16:22:56.282259699+02:00"
