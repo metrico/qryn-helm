@@ -2,7 +2,7 @@ kubernetesClusterDomain: cluster.local
 
 image:
   repository: qxip/qryn
-  tag: 3.1.2-bun
+  tag: 3.1.5
 
 imagePullSecrets:
   nameOverride: ""
@@ -45,6 +45,19 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
+
+serviceMonitor:
+  enabled: false
+  # portName: http
+  # port: 3100
+  # interval: "30s"
+  # scheme: "http"
+  # path: /metrics
+  # type: ClusterIP
+  # labels: {}
+  # tlsConfig: {}
+  # metricRelabelings: []
+  # relabelings: []
 
 autoscaling:
   enabled: false
