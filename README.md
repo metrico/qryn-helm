@@ -3,7 +3,7 @@
 <img src='https://user-images.githubusercontent.com/1423657/218816262-e0e8d7ad-44d0-4a7d-9497-0d383ed78b83.png' style="margin-left:-10px" width=150/>
 
 ## Overview
-This Helm chart provides Kubernetes deployment configurations for [qryn](https://github.com/metrico/qryn) is a polyglot, lighweight, multi-standard observability framework for Logs, Metrics and Traces, designed to be drop-in compatible with Loki, Prometheus, Tempo and Opentelemetry.
+This Helm chart provides Kubernetes deployment configurations for [qryn](https://github.com/metrico/qryn) a polyglot, lighweight, multi-standard observability framework for Logs, Metrics and Traces, designed to be drop-in compatible with Loki, Prometheus, Tempo and Opentelemetry.
 
 ## Prerequisites
 - Kubernetes 1.19+
