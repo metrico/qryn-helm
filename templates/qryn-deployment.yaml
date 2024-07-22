@@ -21,8 +21,6 @@ spec:
         name: {{ include "qryn-helm.fullname" . }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 12 }}
-        imagePullSecrets:
-          - name: {{ include "helm.secretName" . }}
         env:
           {{- range $key, $val := .Values.env }}
           - name: {{ $key }}
@@ -49,5 +47,7 @@ spec:
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
 
+      imagePullSecrets:
+        - name: {{ include "helm.secretName" . }}
 
       restartPolicy: Always
