@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   qryn-helm:
   - apiVersion: v2
+    appVersion: 3.2.27
+    created: "2024-07-22T14:19:13.440357942+03:00"
+    description: A Helm chart for Kubernetes
+    digest: 8b744c1a5893bb07a05a280c866bc41371cf55c562f766afcfaf963edd2863c0
+    name: qryn-helm
+    type: application
+    urls:
+    - qryn-helm-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 3.1.5
-    created: "2024-01-29T13:25:45.600797603+02:00"
+    created: "2024-07-22T14:19:13.439883766+03:00"
     description: A Helm chart for Kubernetes
     digest: 1e984287e6027381742407080a19b084fd1399f32156e598606eeb89541892d7
     name: qryn-helm
@@ -13,7 +23,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 3.0.20
-    created: "2024-01-29T13:25:45.599787713+02:00"
+    created: "2024-07-22T14:19:13.439502776+03:00"
     description: A Helm chart for Kubernetes
     digest: feb4857d295c209288c6fa0e493322ceb2049e2a9c357feee25382cb35ab1117
     name: qryn-helm
@@ -21,4 +31,4 @@ entries:
     urls:
     - qryn-helm-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-29T13:25:45.598503181+02:00"
+generated: "2024-07-22T14:19:13.439052321+03:00"
