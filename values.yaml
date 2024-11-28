@@ -28,10 +28,14 @@ livenessProbe:
   endpoint: "/metrics"
 
 podAnnotations: {}
+
 # podLabels: {}
 podLabels:
   - qryn
+
 nodeSelector: {}
+# nodeSelector:
+#   kubernetes.io/os: linux
 
 tolerations: []
 
