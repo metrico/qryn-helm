@@ -33,14 +33,22 @@ podAnnotations: {}
 podLabels:
   - qryn
 
+## Custom pod annotations
+podAnnotations: {}
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
 nodeSelector: {}
 # nodeSelector:
 #   kubernetes.io/os: linux
 
+## Taints to tolerate on node assignment:
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 tolerations: []
 
+## Pod scheduling constraints
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
 affinity: {}
-
 
 resources:
   limits:
