@@ -2,7 +2,7 @@ kubernetesClusterDomain: cluster.local
 
 image:
   repository: qxip/qryn
-  tag: 3.2.35
+  tag: ""
 
 imagePullSecrets:
   nameOverride: ""
