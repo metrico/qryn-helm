@@ -5,11 +5,28 @@
 ## Overview
 This Helm chart provides Kubernetes deployment configurations for [qryn](https://github.com/metrico/qryn) a polyglot, lighweight, multi-standard observability framework for Logs, Metrics and Traces, designed to be drop-in compatible with Loki, Prometheus, Tempo and Opentelemetry.
 
+---
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Parameters](#parameters)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## Prerequisites
 - Kubernetes 1.19+
 - Helm 3.7+
+- A running ClickHouse server (optional but recommended)
 
-## Get Repository Info
+
+---
+
+## Installation
+
+Get Repository Info
 
 ```bash
 helm repo add qryn-helm https://metrico.github.io/qryn-helm/
@@ -18,7 +35,7 @@ helm repo update
 
 See [helm repository](https://helm.sh/docs/helm/helm_repo/) for command documentation.
 
-## Install Chart
+Install Chart
 To deploy [qryn](https://github.com/metrico/qryn) using this Helm chart, use the following command:
 
 ```bash
@@ -32,42 +49,83 @@ For customization, you can provide a `values.yaml` file or use `--set` flags to 
 
 Feel free to modify the configurations based on your requirements and environment.
 
-## Global parameters
+---
 
-| Parameter                | Value         |
-|--------------------------|---------------|
-| kubernetesClusterDomain  | cluster.local |
+## Parameters
 
-## Common parameters
+### Global Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `kubernetesClusterDomain`     | `cluster.local`        | Kubernetes cluster DNS domain.                       |
 
-| Parameter                              | Value         |
-|----------------------------------------|---------------|
-| nameOverride                           | ""            |
-| fullnameOverride                       | ""            |
-| imageCredentials                        | {}            |
-| replicas                               | 1             |
-| service.type                           | ClusterIP     |
-| service.port                           | 3100          |
-| podAnnotations                         | {}            |
-| podLabels                              | qryn          |
-| nodeSelector                           | {}            |
-| tolerations                            | []            |
-| affinity                               | {}            |
-| resources.limits.cpu                   | 200m          |
-| resources.limits.memory                | 256Mi         |
-| resources.requests.cpu                 | 100m          |
-| resources.requests.memory              | 128Mi         |
-| autoscaling.enabled                    | true          |
-| autoscaling.minReplicas                | 1             |
-| autoscaling.maxReplicas                | 5             |
-| autoscaling.targetCPUUtilizationPercentage | 80        |
-| autoscaling.targetMemoryUtilizationPercentage | 80      |
-| securityContext                        | {}            |
-| ingress.enabled                        | false         |
-| ingress.className                      | ""            |
-| ingress.annotations                    | {}            |
-| ingress.hosts                          | []            |
-| ingress.tls                            | []            |
+### Image Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `image.repository`            | `qxip/qryn`            | Qryn image repository.                               |
+| `image.tag`                   | `""`                  | Qryn image tag (default: latest).                    |
+| `imagePullSecrets`            | `[]`                   | Secrets for pulling images.                          |
+| `imageCredentials`            | `{}`                   | Custom image registry credentials.                   |
+
+### Deployment Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `replicaCount`                | `1`                    | Number of replicas.                                  |
+| `podAnnotations`              | `{}`                   | Annotations for pods.                                |
+| `podLabels`                   | `{}`                   | Labels for pods.                                     |
+| `resources`                   | *See `values.yaml`*    | Resource requests and limits.                        |
+
+### Service Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `service.type`                | `ClusterIP`            | Service type (e.g., ClusterIP, NodePort, LoadBalancer).|
+| `service.port`                | `3100`                 | Service port.                                        |
+
+### Probes
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `livenessProbe.enabled`       | `false`                | Enable liveness probe.                               |
+| `livenessProbe.endpoint`      | `/metrics`             | Endpoint for liveness probe.                         |
+
+### Ingress Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `ingress.enabled`             | `false`                | Enable ingress.                                      |
+| `ingress.className`           | `""`                  | Ingress class name.                                  |
+| `ingress.annotations`         | `{}`                   | Annotations for ingress.                             |
+| `ingress.hosts`               | *See `values.yaml`*    | Hosts configuration.                                |
+| `ingress.tls`                 | `[]`                   | TLS configuration.                                   |
+
+### Autoscaling Parameters
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `autoscaling.enabled`         | `false`                | Enable Horizontal Pod Autoscaler.                    |
+| `autoscaling.minReplicas`     | `1`                    | Minimum number of replicas.                          |
+| `autoscaling.maxReplicas`     | `5`                    | Maximum number of replicas.                          |
+| `autoscaling.targetCPUUtilizationPercentage` | `80`  | Target CPU utilization percentage.                   |
+| `autoscaling.targetMemoryUtilizationPercentage` | `80` | Target memory utilization percentage.               |
+
+### Environment Variables
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `env.CLICKHOUSE_SERVER`       | `localhost`            | ClickHouse server address.                           |
+| `env.CLICKHOUSE_PORT`         | `8123`                 | ClickHouse server port.                              |
+| `env.CLICKHOUSE_DB`           | `qryn`                 | ClickHouse database name.                            |
+| `env.CLICKHOUSE_AUTH`         | `default:`             | ClickHouse authentication credentials.               |
+
+### Security and Service Account
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `serviceAccount.create`       | `true`                 | Create a ServiceAccount.                             |
+| `serviceAccount.automount`    | `false`                | Automount API credentials.                           |
+| `serviceAccount.name`         | `""`                  | Custom service account name.                         |
+
+### Node Affinity and Tolerations
+| **Key**                       | **Default**            | **Description**                                        |
+|-------------------------------|------------------------|------------------------------------------------------|
+| `nodeSelector`                | `{}`                   | Node selection constraints.                          |
+| `tolerations`                 | `[]`                   | Toleration rules.                                    |
+| `affinity`                    | `{}`                   | Affinity rules.                                      |
+
 
 ## Qryn image parameters
 
@@ -107,3 +165,23 @@ Feel free to modify the configurations based on your requirements and environmen
 
 ## ENV Settings
 For more information about qryn environment variables, visit [qryn Environments](https://qryn.metrico.in/#/env).
+
+
+
+---
+
+#### Contributing
+
+Whether it's code, documentation or grammar, we ❤️ all contributions. Not sure where to get started?
+
+- Join our [Matrix Channel](https://matrix.to/#/#qryn:matrix.org), and ask us any questions.
+- Have a PR or idea? Request a session / code walkthrough with our team for guidance.
+
+<br>
+
+---
+#### License
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/AGPLv3_Logo.svg/2560px-AGPLv3_Logo.svg.png" width=200>
+
+©️ QXIP BV, released under the GNU Affero General Public License v3.0. See [LICENSE](LICENSE) for details.
