@@ -3,7 +3,17 @@ entries:
   qryn-helm:
   - apiVersion: v2
     appVersion: 3.2.37
-    created: "2024-12-19T16:29:00.043792198+02:00"
+    created: "2025-01-23T16:01:41.38119398+02:00"
+    description: A Helm chart for Kubernetes
+    digest: 1d1b07a7e40ab553eee79e486d526065283136be651691a77227ae274c1297b3
+    name: qryn-helm
+    type: application
+    urls:
+    - qryn-helm-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 3.2.37
+    created: "2025-01-23T16:01:41.380858559+02:00"
     description: A Helm chart for Kubernetes
     digest: 51fa18e17000f8ea063e3a7b0626aa71bb209ed15fdb6604124452f500d818c9
     name: qryn-helm
@@ -13,7 +23,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 3.2.27
-    created: "2024-12-19T16:29:00.043480183+02:00"
+    created: "2025-01-23T16:01:41.380504991+02:00"
     description: A Helm chart for Kubernetes
     digest: 4b11c5a3eccd9ae7a54f1d30d2dc17c5d3fb7ea6816205a8093c028acd1b77f2
     name: qryn-helm
@@ -23,7 +33,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 3.2.27
-    created: "2024-12-19T16:29:00.043233298+02:00"
+    created: "2025-01-23T16:01:41.380222155+02:00"
     description: A Helm chart for Kubernetes
     digest: 8b744c1a5893bb07a05a280c866bc41371cf55c562f766afcfaf963edd2863c0
     name: qryn-helm
@@ -33,7 +43,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 3.1.5
-    created: "2024-12-19T16:29:00.04292543+02:00"
+    created: "2025-01-23T16:01:41.37993363+02:00"
     description: A Helm chart for Kubernetes
     digest: 1e984287e6027381742407080a19b084fd1399f32156e598606eeb89541892d7
     name: qryn-helm
@@ -43,7 +53,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 3.0.20
-    created: "2024-12-19T16:29:00.042478876+02:00"
+    created: "2025-01-23T16:01:41.379639186+02:00"
     description: A Helm chart for Kubernetes
     digest: feb4857d295c209288c6fa0e493322ceb2049e2a9c357feee25382cb35ab1117
     name: qryn-helm
@@ -51,4 +61,4 @@ entries:
     urls:
     - qryn-helm-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-19T16:29:00.041972282+02:00"
+generated: "2025-01-23T16:01:41.379220782+02:00"
