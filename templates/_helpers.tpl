@@ -70,7 +70,7 @@ Creating Image Pull Secrets
 {{- end }}
 {{- end }}
 
-{{- define "helm.secretName" -}}
+{{- define "qryn-helm.secretName" -}}
 {{- if .Values.imagePullSecrets.nameOverride }}
 {{- .Values.imagePullSecrets.nameOverride }}
 {{- else }}

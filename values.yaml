@@ -1,21 +1,23 @@
 kubernetesClusterDomain: cluster.local
 
+  
+nameOverride: ""
+fullnameOverride: ""
+
 image:
   repository: qxip/qryn
   tag: ""
 
-imagePullSecrets: []
-  # nameOverride: ""
-nameOverride: ""
-fullnameOverride: ""
+imagePullSecrets: 
+  nameOverride: ""
 
 imageCredentials: {}
-# imageCredentials:
 #   registry: registry.cluster.local
 #   username: someone
 #   password: sillyness
 #   email: someone@host.com
-  
+
+
 replicaCount: 1
 
 service:

@@ -3,4 +3,4 @@ appVersion: 3.2.37
 description: A Helm chart for Kubernetes
 name: qryn-helm
 type: application
-version: 0.1.4
+version: 0.1.5
