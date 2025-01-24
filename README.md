@@ -40,7 +40,7 @@ To deploy [qryn](https://github.com/metrico/qryn) using this Helm chart, use the
 
 ```bash
 helm repo add qryn-helm https://metrico.github.io/qryn-helm/
-helm install [RELEASE_NAME] qryn-helm/qryn-helm --version 0.1.4
+helm install [RELEASE_NAME] qryn-helm/qryn-helm --version [Helm chart version]
 ```
 
 See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation.
