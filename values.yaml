@@ -8,8 +8,8 @@ image:
   repository: qxip/qryn
   tag: ""
 
-imagePullSecrets: 
-  nameOverride: ""
+# imagePullSecrets: 
+#   nameOverride: ""
 
 imageCredentials: {}
 #   registry: registry.cluster.local
