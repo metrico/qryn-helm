@@ -62,7 +62,7 @@ Feel free to modify the configurations based on your requirements and environmen
 | **Key**                       | **Default**            | **Description**                                        |
 |-------------------------------|------------------------|------------------------------------------------------|
 | `image.repository`            | `qxip/qryn`            | Qryn image repository.                               |
-| `image.tag`                   | `""`                  | Qryn image tag (default: latest).                    |
+| `image.tag`                   | `""`                   | Qryn image tag (default: latest).                    |
 | `imagePullSecrets`            | `[]`                   | Secrets for pulling images.                          |
 | `imageCredentials`            | `{}`                   | Custom image registry credentials.                   |
 
@@ -83,14 +83,13 @@ Feel free to modify the configurations based on your requirements and environmen
 ### Probes
 | **Key**                       | **Default**            | **Description**                                        |
 |-------------------------------|------------------------|------------------------------------------------------|
-| `livenessProbe.enabled`       | `false`                | Enable liveness probe.                               |
-| `livenessProbe.endpoint`      | `/metrics`             | Endpoint for liveness probe.                         |
-
+| `livenessProbe`               | `{}`                   | Liveness probe config.                               |
+| `readinessProbe`              | `{}`                   | Readness probe config.                      
 ### Ingress Parameters
 | **Key**                       | **Default**            | **Description**                                        |
 |-------------------------------|------------------------|------------------------------------------------------|
 | `ingress.enabled`             | `false`                | Enable ingress.                                      |
-| `ingress.className`           | `""`                  | Ingress class name.                                  |
+| `ingress.className`           | `""`                   | Ingress class name.                                  |
 | `ingress.annotations`         | `{}`                   | Annotations for ingress.                             |
 | `ingress.hosts`               | *See `values.yaml`*    | Hosts configuration.                                |
 | `ingress.tls`                 | `[]`                   | TLS configuration.                                   |
@@ -101,7 +100,7 @@ Feel free to modify the configurations based on your requirements and environmen
 | `autoscaling.enabled`         | `false`                | Enable Horizontal Pod Autoscaler.                    |
 | `autoscaling.minReplicas`     | `1`                    | Minimum number of replicas.                          |
 | `autoscaling.maxReplicas`     | `5`                    | Maximum number of replicas.                          |
-| `autoscaling.targetCPUUtilizationPercentage` | `80`  | Target CPU utilization percentage.                   |
+| `autoscaling.targetCPUUtilizationPercentage` | `80`    | Target CPU utilization percentage.                   |
 | `autoscaling.targetMemoryUtilizationPercentage` | `80` | Target memory utilization percentage.               |
 
 ### Environment Variables
@@ -117,7 +116,7 @@ Feel free to modify the configurations based on your requirements and environmen
 |-------------------------------|------------------------|------------------------------------------------------|
 | `serviceAccount.create`       | `true`                 | Create a ServiceAccount.                             |
 | `serviceAccount.automount`    | `false`                | Automount API credentials.                           |
-| `serviceAccount.name`         | `""`                  | Custom service account name.                         |
+| `serviceAccount.name`         | `""`                   | Custom service account name.                         |
 
 ### Node Affinity and Tolerations
 | **Key**                       | **Default**            | **Description**                                        |
