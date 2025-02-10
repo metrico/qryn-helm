@@ -1,6 +1,5 @@
 kubernetesClusterDomain: cluster.local
 
-  
 nameOverride: ""
 fullnameOverride: ""
 
@@ -24,9 +23,13 @@ service:
   type: ClusterIP
   port: 3100
 
-livenessProbe:
-  enabled: false
-  endpoint: "/metrics"
+livenessProbe: 
+  httpGet: 
+    path: /metrics 
+    port: http 
+  initialDelaySeconds: 10 # seconds
+  periodSeconds: 10 # seconds
+readinessProbe: {}
 
 podAnnotations: {}
 podLabels: {}

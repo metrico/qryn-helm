@@ -28,6 +28,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       automountServiceAccountToken: {{ .Values.serviceAccount.automount }}
+      serviceAccountName: {{ include "qryn-helm.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -46,17 +47,10 @@ spec:
             containerPort: {{ .Values.service.port }}
             protocol: TCP
 
-        {{- if eq .Values.livenessProbe.enabled true }}
-        livenessProbe: 
-          httpGet: 
-            path: {{ .Values.livenessProbe.endpoint }}
-            port: http
-          initialDelaySeconds: 10 #Default 0 
-          periodSeconds: 10 #Default 10 
-          timeoutSeconds: 1 #Default 1 
-          successThreshold: 1 #Default 1 
-          failureThreshold: 3 #Default 3
-        {{ end }} 
+        livenessProbe:
+          {{- toYaml .Values.livenessProbe | nindent 12 }}
+        readinessProbe:
+          {{- toYaml .Values.readinessProbe | nindent 12 }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         {{- with .Values.volumeMounts }}
