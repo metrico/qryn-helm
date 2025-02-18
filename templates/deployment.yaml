@@ -41,20 +41,19 @@ spec:
           - name: {{ $key }}
             value: "{{ $val }}"
           {{- end }}
-
         ports:
           - name: http
             containerPort: {{ .Values.service.port }}
             protocol: TCP
 
-          {{- if .Values.livenessProbe }}
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
-          {{- end }}
-          {{- if .Values.readinessProbe.httpGet }}
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
-          {{- end }}
+        {{- if .Values.livenessProbe }}
+        livenessProbe:
+          {{- toYaml .Values.livenessProbe | nindent 12 }}
+        {{- end }}
+        {{- if .Values.readinessProbe.httpGet }}
+        readinessProbe:
+          {{- toYaml .Values.readinessProbe | nindent 12 }}
+        {{- end }}
 
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
