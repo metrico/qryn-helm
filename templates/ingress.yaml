@@ -1,10 +1,10 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "gigapipe.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
-  {{- end }}
+{{- $ingressClassAnnotation := dict "kubernetes.io/ingress.class" .Values.ingress.className }}
+{{- $annotations := .Values.ingress.annotations }}
+{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) (not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class")) }}
+  {{- $annotations = merge $ingressClassAnnotation $annotations }}
 {{- end }}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
@@ -18,7 +18,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "gigapipe.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with $annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
