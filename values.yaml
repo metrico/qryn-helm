@@ -5,7 +5,7 @@ fullnameOverride: ""
 
 image:
   repository: ghcr.io/metrico/gigapipe
-  tag: ""
+  tag: "v4.1.6"
 
 # imagePullSecrets: 
 #   nameOverride: ""
@@ -44,16 +44,8 @@ resources:
 
 serviceMonitor:
   enabled: false
-  # portName: http
-  # port: 3100
-  # interval: "30s"
-  # scheme: "http"
-  # path: /metrics
-  # type: ClusterIP
-  # labels: {}
-  # tlsConfig: {}
-  # metricRelabelings: []
-  # relabelings: []
+  interval: "30s"
+  annotations: {}
 
 autoscaling:
   enabled: false
@@ -74,13 +66,13 @@ serviceAccount:
   name: ""
 
 podSecurityContext: {}
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+securityContext: 
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
 
 ingress:
   enabled: false
@@ -101,7 +93,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 basicAuthPass: ""
-  # needs APR1-MD5 password 
+  # APR1-MD5 format required for nginx basic auth
   # example user test, pass test 
   # "test:$apr1$vbY9pP6j$GruYGP/AoYR1RPQN8KshE."
 

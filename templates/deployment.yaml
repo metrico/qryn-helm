@@ -41,7 +41,8 @@ spec:
           - name: {{ $key }}
             value: "{{ $val }}"
           {{- end }}
-          {{- if not .Values.env.CLICKHOUSE_AUTH }}
+          {{/* Use secret if CLICKHOUSE_AUTH not set in env */}}
+          {{- if and (not .Values.env.CLICKHOUSE_AUTH) .Values.auth .Values.auth.clickhouse }}
           - name: CLICKHOUSE_AUTH
             valueFrom:
               secretKeyRef:
@@ -62,7 +63,7 @@ spec:
         livenessProbe:
           {{- toYaml .Values.livenessProbe | nindent 12 }}
         {{- end }}
-        {{- if .Values.readinessProbe.httpGet }}
+        {{- if and .Values.readinessProbe .Values.readinessProbe.httpGet }}
         readinessProbe:
           {{- toYaml .Values.readinessProbe | nindent 12 }}
         {{- end }}
