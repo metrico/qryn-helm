@@ -1,0 +1,12 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+.project
+.vscode
+
+# Chart dependencies
+**/charts/*.tgz
+
+.history
+
